@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.NaturalId;
 import org.hibernate.validator.constraints.Range;
 
 @Entity
@@ -19,12 +17,10 @@ public class Room {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private long id;
 	 
-	 //@NaturalId (mutable = false)
 	 @Size (min=1,max=1, message = "Only one character allowed  ")
 	 @Column(name="building")
 	 private String building;
 	 
-	 //@NaturalId (mutable = false)
 	 @Range(min=1, max=999, message = "Room number must between 1 and 999")
 	 @Column(name="roomNumber")
 	 private int roomNumber;
