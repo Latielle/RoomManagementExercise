@@ -24,6 +24,11 @@ public class RoomController {
  @Autowired
  RoomService roomService;
  
+ /**
+  * List Rooms
+  * @param void 
+  * @return List of Rooms
+  */
  @RequestMapping(value="/rooms", method=RequestMethod.GET)
  public ModelAndView list() {
   ModelAndView model = new ModelAndView("room_list");
@@ -33,6 +38,11 @@ public class RoomController {
   return model;
  }
  
+ /**
+  * Add Room
+  * @param void 
+  * @return Adding Room
+  */
  @RequestMapping(value="/addRoom/", method=RequestMethod.GET)
  public ModelAndView addRoom() {
   ModelAndView model = new ModelAndView();
@@ -44,6 +54,11 @@ public class RoomController {
   return model;
  }
  
+ /**
+  * Show Room
+  * @param id Room ID 
+  * @return Room
+  */
  @RequestMapping(value="/rooms/{id}", method=RequestMethod.GET)
  public ModelAndView editRoom(@PathVariable long id) {
   ModelAndView model = new ModelAndView();
@@ -55,6 +70,11 @@ public class RoomController {
   return model;
  }
  
+ /**
+  * Create Room
+  * @param room Room,  BindingResult bindingResult
+  * @return void
+  */
  @RequestMapping(value="/rooms", method=RequestMethod.POST)
  public ModelAndView save(@Valid @ModelAttribute("roomForm") Room room, BindingResult bindingResult) {
      if (bindingResult.hasErrors()) {
@@ -77,6 +97,11 @@ public class RoomController {
   return new ModelAndView("redirect:/api/rooms");
  }
 
+ /**
+  * Delete Room
+  * @param id Room ID 
+  * @return void
+  */
  @RequestMapping(value="/deleteRoom/{id}", method=RequestMethod.GET)
  public ModelAndView delete(@PathVariable("id") long id) {
   roomService.deleteRoom(id);
