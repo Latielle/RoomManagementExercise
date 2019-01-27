@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>     
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,6 +22,9 @@
  <div class="container">
   <spring:url value="/api/rooms" var="saveURL" />
   <h2>Room</h2>
+  <c:if test="${error}">
+  	<label class="error">The combination Building and Room number must be unique</label>
+  </c:if>
   <form:form modelAttribute="roomForm" method="post" action="${saveURL }" cssClass="form" >
    <form:hidden path="id"/>
    <div class="form-group">

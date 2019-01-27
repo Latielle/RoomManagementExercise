@@ -3,7 +3,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,8 +63,17 @@ public class RoomController {
     	  model.setViewName("room_form");
          return model;
      }
-	 roomService.saveOrUpdate(room);
-  
+     try {
+    	 roomService.saveOrUpdate(room);
+     }
+	 catch (DataIntegrityViolationException ex)
+	 {
+		 ModelAndView model = new ModelAndView();
+		 model.addObject("error", true);
+   	  	 model.setViewName("room_form");
+		 return model;
+	 }
+
   return new ModelAndView("redirect:/api/rooms");
  }
 
