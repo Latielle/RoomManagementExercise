@@ -33,10 +33,6 @@ public class CustomErrorController implements ErrorController{
                 errorMsg = "Http Error Code: 404. Resource not found";
                 break;
             }
-            case 405: {
-                errorMsg = "Сombination of login and password must be unique";
-                break;
-            }
             case 500: {
                 errorMsg = "Http Error Code: 500. Internal Server Error";
                 break;
