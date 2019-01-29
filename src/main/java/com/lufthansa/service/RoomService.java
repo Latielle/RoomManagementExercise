@@ -4,11 +4,12 @@ import java.util.List;
 import com.lufthansa.model.*;
 
 public interface RoomService {
-	 public List<Room> getAllRooms();
+	
+	 Room getRoomById(long id);
 	 
-	 public Room getRoomById(long id);
+	 List<Room> searchRooms (String building, String roomNumber, String minSeats, String maxSeats, String projectorPresent);
 	 
-	 public void saveOrUpdate(Room room);
+	 void saveOrUpdate(Room room);
 	 
-	 public void deleteRoom(long id);
+	 void deleteRoom(long id);
 }

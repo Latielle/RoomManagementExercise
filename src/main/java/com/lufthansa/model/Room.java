@@ -30,7 +30,7 @@ public class Room {
 	 private int seats;
 	 
 	 @Column(name="projectorPresent")
-	 private boolean projectorPresent;
+	 private Boolean projectorPresent;
 	 
 	 public long getId() {
 		  return id;
@@ -64,11 +64,11 @@ public class Room {
 		  this.seats = seats;
 		 }
 	 
-	 public boolean getProjectorPresent() {
+	 public Boolean getProjectorPresent() {
 		  return projectorPresent;
 		 }
 
-	 public void setProjectorPresent(boolean projectorPresent) {
+	 public void setProjectorPresent(Boolean projectorPresent) {
 		  this.projectorPresent = projectorPresent;
 		 }
 }

@@ -1,5 +1,6 @@
 package com.lufthansa.controller;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lufthansa.model.Room;
@@ -25,14 +27,19 @@ public class RoomController {
  RoomService roomService;
  
  /**
-  * List Rooms
-  * @param void 
+  * List Rooms & Search Rooms by parameters
+  * @param parameters Parameters for Query 
   * @return List of Rooms
   */
  @GetMapping("/rooms")
- public ModelAndView list() {
+ public ModelAndView list(@RequestParam Map<String, String> parameters) {
   ModelAndView model = new ModelAndView("room_list");
-  List<Room> roomList = roomService.getAllRooms();
+  String building = parameters.get("building");
+  String roomNumber = parameters.get("roomNumber");
+  String minSeats = parameters.get("minSeats");
+  String maxSeats = parameters.get("maxSeats");
+  String projectorPresent = parameters.get("projectorPresent");
+  List<Room>  roomList = roomService.searchRooms(building, roomNumber, minSeats, maxSeats, projectorPresent);
   model.addObject("roomList", roomList);
   
   return model;
@@ -40,7 +47,6 @@ public class RoomController {
  
  /**
   * Add Room
-  * @param void 
   * @return Adding Room
   */
  @GetMapping("/addRoom/")
