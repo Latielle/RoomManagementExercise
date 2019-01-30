@@ -1,8 +1,9 @@
 package com.lufthansa.repository;
+
 import org.springframework.data.repository.CrudRepository;
 
-import com.lufthansa.model.*;
+import com.lufthansa.model.Room;
 
-public interface RoomRepository extends CrudRepository <Room, Long>{
+public interface RoomRepository extends CrudRepository<Room, Long> {
 
 }
